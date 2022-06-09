@@ -3,3 +3,5 @@ Ryan White
 
 As of now, simple Twitter bot that uses CronJob to send tweets out on a developer determined schedule. More practical and more room for improvement over the other
 RESTful app.
+
+Excluding node_modules folder for the purpose of display simplicity.
