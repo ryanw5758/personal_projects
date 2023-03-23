@@ -41,10 +41,10 @@ def selectRowInformation(keyString, rowNum, activeSheet):
 
         # TODO rethink colNum approach, not really intuitive at all
         colNum = 7
-        for col in activeSheet.iter_cols(min_row = rowNum, min_col = 8, max_col = activeSheet.max_column, values_only = True):
+        for col in activeSheet.iter_cols(min_row = rowNum, max_row = rowNum, min_col = 8, max_col = activeSheet.max_column, values_only = True):
             colNum += 1
             for budget in col:
-                if budget is not None:
+                if budget is not None and budget != 0:
                     # number hit
                     # now can retrieve column specific information
                     progtCenter = activeSheet.cell(PROGTCENTERROW,colNum).value
