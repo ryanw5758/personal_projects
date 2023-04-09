@@ -22,7 +22,8 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation('com.google.guava:guava:31.1-jre')
-    implementation("net.dv8tion:JDA:5.0.0-beta.5")
+    implementation("net.dv8tion:JDA:5.0.0-beta.6")
+    implementation("org.slf4j:slf4j-nop:1.7.25")
 }
 
 testing {

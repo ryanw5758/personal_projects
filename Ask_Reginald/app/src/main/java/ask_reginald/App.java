@@ -3,16 +3,43 @@
  */
 package ask_reginald;
 
+import java.util.EventListener;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import net.dv8tion.jda.api.events.Event;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.internal.utils.config.sharding.EventConfig;
 
-public class App {
+public class App extends ListenerAdapter {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
-        JDABuilder builder = JDABuilder.createDefault("TOKENVAL");
+        JDABuilder builder = JDABuilder.createDefault(TOKENVAL");
+        builder.setActivity(Activity.playing("being born"));
+        builder.addEventListeners(new App());
+        builder.build();
+    }
+
+    @Override
+    public void onMessageReceived(MessageReceivedEvent event) {
+
+        Message message = event.getMessage();
+        String content = message.getContentRaw();
+
+        System.out.println(content);
+
+        if(content.equals("!bing")) {
+            MessageChannel channel = event.getChannel();
+            event.getChannel().sendMessage("bong").queue();
+        }
     }
 }
